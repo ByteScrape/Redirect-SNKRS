@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html lang="de-DE">
+<head>
+  <title>Redirect</title>
+  <meta charset="UTF-8">
+  <script type="text/javascript">
+    function getParameter() {
+      let parameters = new URLSearchParams(window.location.search);
+      return parameters.get("sku")
+    }
+    window.location.href = "snkrs://product/" + getParameter()
+
+  </script>
+</head>
+</html>
