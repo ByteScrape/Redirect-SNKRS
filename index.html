@@ -6,10 +6,26 @@
   <script type="text/javascript">
     function getParameter() {
       let parameters = new URLSearchParams(window.location.search);
-      return parameters.get("sku")
+      return parameters.get("sku");
     }
-    window.location.href = "snkrs://product/" + getParameter()
 
+    function isValidSKU(sku) {
+      // Regular expression to check for the format like "HJ9351-002"
+      const skuRegex = /^[A-Z]{2}[0-9]{4}-[0-9]{3}$/;
+      return skuRegex.test(sku);
+    }
+
+    let sku = getParameter();
+
+    if (sku) { // Check if sku parameter exists at all
+      if (isValidSKU(sku)) {
+        window.location.href = "snkrs://product/" + sku;
+      } else {
+        alert("Invalid SKU format. Please provide a SKU in the format like HJ9351-002.");
+      }
+    } else {
+      alert("No SKU provided. Please provide a 'sku' parameter in the URL.");
+    }
   </script>
 </head>
 </html>
